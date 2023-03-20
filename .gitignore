@@ -1,0 +1,20 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/UniversityTestSystem/FileContentIndex
+/.vs/UniversityTestSystem/v17/.wsuo
+/.vs/slnx.sqlite
+/.vs
+/XUnitTests/obj/Debug/net6.0/XUnitTests.assets.cache
+/postgres/data
+.env
+
+src/**/bin/**
+src/**/obj/**
+tests/*/bin/*/
+tests/*/obj
+*.cache
+*.user
+bin/*
+obj/*
