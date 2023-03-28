@@ -1,0 +1,104 @@
+﻿@using BusinessLayer.ViewModels
+@using DataAccessLayer.Enums
+@using PresentationLayer.Views.Components
+@using Microsoft.AspNetCore.Components.Forms
+
+<EditForm Model="@test" OnValidSubmit="@SaveTest">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="startDateTime">Start Date Time</label>
+        <InputDate id="startDateTime" class="form-control" @bind-Value="test.StartDateTime" />
+        <ValidationMessage For="@(() => test.StartDateTime)" />
+    </div>
+    <div class="form-group">
+        <label for="endDateTime">End Date Time</label>
+        <InputDate id="endDateTime" class="form-control" @bind-Value="test.EndDateTime" />
+        <ValidationMessage For="@(() => test.EndDateTime)" />
+    </div>
+    <div class="form-group">
+        <label for="durationSeconds">Duration Seconds</label>
+        <InputNumber id="durationSeconds" class="form-control" @bind-Value="test.DurationSeconds" />
+        <ValidationMessage For="@(() => test.DurationSeconds)" />
+    </div>
+    <div class="form-group">
+        <label for="attemptsAllowed">Attempts Allowed</label>
+        <InputNumber id="attemptsAllowed" class="form-control" @bind-Value="test.AttemptsAllowed" />
+        <ValidationMessage For="@(() => test.AttemptsAllowed)" />
+    </div>
+    <div class="form-group">
+        <label for="totalGrade">Total Grade</label>
+        <InputNumber id="totalGrade" class="form-control" @bind-Value="test.TotalGrade" />
+        <ValidationMessage For="@(() => test.TotalGrade)" />
+    </div>
+
+    <h4>Questions</h4>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Question Text</th>
+            <th>Marks</th>
+            <th>Correct Number</th>
+            <th>Correct Short Text</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var question in test.Questions)
+        {
+            <tr @key="@question">
+                <td>
+                    <select @bind="@question.Type">
+                        @foreach (var type in Enum.GetValues(typeof(QuestionType)))
+                        {
+                            <option value="@type">@type</option>
+                        }
+                    </select>
+                </td>
+                <td><InputText type="text" @bind-Value="@question.QuestionText" /></td>
+                <td><InputNumber type="number" @bind-Value="@question.Marks" /></td>
+                <td><InputNumber type="number" @bind-Value="@question.CorrectNumber" /></td>
+                <td><InputText type="text" @bind-Value="@question.CorrectShortText" /></td>
+                <td>                    
+                        <button type="button" @onclick="@(() => EditQuestion(question) )">Edit</button>
+                        <button type="button" @onclick="@(() => test.Questions.Remove(question))">Delete</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary" @onclick="@(() => AddQuestion())">Add Question</button>
+
+    <button type="submit" class="btn btn-primary">Save Test</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public TestViewModel test { get; set; } // = new TestViewModel();
+
+    private void AddQuestion()
+    {
+        test.Questions.Add(new QuestionViewModel());
+        StateHasChanged();
+    }
+
+    private void SaveTest()
+    {
+
+        // Do something with the test data
+    }
+
+    private void DeleteQuestion(QuestionViewModel question)
+    {
+        test.Questions.Remove(question);
+        StateHasChanged();
+    }
+
+    private void EditQuestion( QuestionViewModel question)
+    {
+        
+    }
+
+}

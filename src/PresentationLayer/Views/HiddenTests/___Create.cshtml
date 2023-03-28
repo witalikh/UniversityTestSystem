@@ -1,0 +1,122 @@
+﻿@using DataAccessLayer.Enums
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model BusinessLayer.ViewModels.TestViewModel
+
+@{
+    ViewData["Title"] = "Create Test";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-controller="Tests" asp-action="Create" method="post" id="TestCreateForm">
+    <div class="form-group">
+        <label asp-for="StartDateTime" class="control-label"></label>
+        <input asp-for="StartDateTime" class="form-control" />
+        <span asp-validation-for="StartDateTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDateTime" class="control-label"></label>
+        <input asp-for="EndDateTime" class="form-control" />
+        <span asp-validation-for="EndDateTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DurationSeconds" class="control-label"></label>
+        <input asp-for="DurationSeconds" class="form-control" />
+        <span asp-validation-for="DurationSeconds" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AttemptsAllowed" class="control-label"></label>
+        <input asp-for="AttemptsAllowed" class="form-control" />
+        <span asp-validation-for="AttemptsAllowed" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TotalGrade" class="control-label"></label>
+        <input asp-for="TotalGrade" class="form-control" />
+        <span asp-validation-for="TotalGrade" class="text-danger"></span>
+    </div>
+
+    <h4>Questions</h4>
+
+    <div id="question-list">
+        <table>
+            <tbody>
+                @{
+                    var i = 0;
+                }
+                @foreach (var question in Model.Questions)
+                {
+                    <tr>
+                        <td>
+                            <textarea asp-for="@Model.Questions[i].QuestionText" class="form-control"></textarea>
+                        </td>
+                        <td>
+                            <select class="form-control" asp-for="@Model.Questions[i].Type">
+                                <option value="">-- Select --</option>
+                                @foreach (var type in Enum.GetValues(typeof(QuestionType)))
+                                {
+                                    <option value="@type">@type</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <input class="form-control" asp-for="@Model.Questions[i].Marks" type="text">
+                        </td>
+                        <td>
+                            <input class="form-control" asp-for="@Model.Questions[i].InnerOrder" type="number">
+                        </td>
+                        <td>
+                            <a class="remove" onclick="remove(this)">Remove</a>
+                        </td>
+
+                        @*<partial name="_QuestionEditor" model="question"/>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <button id="add-question" type="button" class="btn btn-primary" onclick="add()">Add Question</button>
+    
+    <button type="submit" class="btn btn-primary">Save Test</button>
+</form>
+
+@*@section scripts {
+    <script>
+        $(document).ready(function() {
+            $("#add-question").click(function() {
+                $.get("/Tests/GetQuestionEditor", function(data) {
+                    $("#question-list").append(data);
+                });
+            });
+        });
+    </script>
+}*@
+
+@section Scripts{
+    <script>
+        $('#TestCreateForm').submit(function () {
+            var i = 0;
+            $("tbody> tr ").each(function () {
+                $(this).find("textarea[name$='.QuestionText']").attr("name", "Questions[" + i + "].QuestionText");
+                $(this).find("select[name$='.Type']").attr("name", "Questions[" + i + "].Type");
+                $(this).find("input[name$='.Marks']").attr("name", "Questions[" + i + "].Marks");
+                $(this).find("input[name$='.InnerOrder']").attr("name", "Questions[" + i + "].InnerOrder");
+                i++;
+            })
+            // ...
+            return true; // return false to cancel form action
+        });
+
+        function remove(e) {
+            $(e).parent().parent().remove()
+        }
+        function add() {
+            var i = $("tbody> tr ").length;
+            var newRow = '<tr><td><textarea name="Questions[' + i + '].QuestionText" class="form-control"></textarea></td><td><select name="Questions[' + i + '].Type" class="form-control"><option value="">-- Select --</option>@foreach (var type in Enum.GetValues(typeof(QuestionType)))
+        {
+            <option value="@type">@type</option>
+        }</select></td><td><input name="Questions[' + i + '].Marks" type="text" class="form-control" /></td><td><input name="Questions[' + i + '].InnerOrder" type="number" class="form-control" /></td><td><a class="remove" onclick="remove(this)">Remove</a></td></tr>';
+            $('tbody').append(newRow);
+        }
+    </script>
+}
