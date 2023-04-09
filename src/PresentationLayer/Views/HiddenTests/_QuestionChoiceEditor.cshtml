@@ -1,0 +1,16 @@
+﻿@model BusinessLayer.ViewModels.QuestionChoiceOptionViewModel
+
+<tr>
+    <td>
+        <input asp-for="InnerOrder" class="form-control choice-order" readonly />
+    </td>
+    <td>
+        <input asp-for="OptionText" class="form-control" />
+    </td>
+    <td>
+        <input asp-for="IsCorrect" type="checkbox" class="form-check-input" />
+    </td>
+    <td>
+        <button type="button" class="btn btn-danger" onclick="$(this).closest('tr').remove()">Remove</button>
+    </td>
+</tr>
