@@ -1,0 +1,59 @@
+﻿@model List<BusinessLayer.ViewModels.QuestionChoiceOptionViewModel>
+
+<!-- Single Choice Editor -->
+<div id="single-choice-editor" class="d-none">
+    <hr />
+    <h4>Choices</h4>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Order</th>
+            <th>Option Text</th>
+            <th>Is Correct?</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="question-choices">
+        @foreach (var choice in Model.OrderBy(c => c.InnerOrder))
+        {
+            await Html.PartialAsync("_QuestionChoiceEditor", choice);
+        }
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4" class="text-right">
+                <button type="button" class="btn btn-success" onclick="addQuestionChoice()">Add Choice</button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!-- Multiple Choice Editor -->
+<div id="multiple-choice-editor" class="d-none">
+    <hr />
+    <h4>Choices</h4>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Order</th>
+            <th>Option Text</th>
+            <th>Is Correct?</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="question-choices">
+        @foreach (var choice in Model.OrderBy(c => c.InnerOrder))
+        {
+            await Html.PartialAsync("_QuestionChoiceEditor", choice);
+        }
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4" class="text-right">
+                <button type="button" class="btn btn-success" onclick="addQuestionChoice()">Add Choice</button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
