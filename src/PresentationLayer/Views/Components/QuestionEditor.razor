@@ -1,0 +1,65 @@
+﻿@using BusinessLayer.ViewModels
+@using DataAccessLayer.Enums
+@using Microsoft.AspNetCore.Components
+
+<table>
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Question Text</th>
+            <th>Marks</th>
+            <th>Correct Number</th>
+            <th>Correct Short Text</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Questions)
+        {
+            <tr>
+                <td>
+                    <select @bind="@question.Type">
+                        @foreach (var type in Enum.GetValues(typeof(QuestionType)))
+                        {
+                            <option value="@type">@type</option>
+                        }
+                    </select>
+                </td>
+                <td><input type="text" @bind="@question.QuestionText" /></td>
+                <td><input type="number" @bind="@question.Marks" /></td>
+                <td><input type="number" @bind="@question.CorrectNumber" /></td>
+                <td><input type="text" @bind="@question.CorrectShortText" /></td>
+                <td>
+                    <button @onclick="@(() => EditQuestion(question))">Edit</button>
+                    <button @onclick="@(() => DeleteQuestion(question))">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*<button @onclick="AddQuestion">Add Question</button>*@
+
+@code {
+    [Parameter]
+    public List<QuestionViewModel> Questions { get; set; }
+
+
+    private QuestionViewModel _newQuestion = new QuestionViewModel();
+
+    private void AddQuestion()
+    {
+        Questions.Add(_newQuestion);
+        _newQuestion = new QuestionViewModel();
+    }
+
+    private void EditQuestion(QuestionViewModel question)
+    {
+        // Perform any necessary logic for editing the question
+    }
+
+    private void DeleteQuestion(QuestionViewModel question)
+    {
+        Questions.Remove(question);
+    }
+}
