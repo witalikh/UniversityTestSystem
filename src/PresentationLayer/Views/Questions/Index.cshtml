@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BusinessLayer.ViewModels.QuestionViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-route="tests-questions-create-by-classroom-get" asp-route-classroomPk="@ViewBag.ClassroomId" asp-route-testPk="@ViewBag.TestId">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InnerOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorrectNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorrectShortText)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InnerOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrectNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrectShortText)
+            </td>
+            <td>
+                <a asp-route="tests-questions-edit-by-classroom-get" asp-route-classroomPk="@ViewBag.ClassroomId" asp-route-testPk="@ViewBag.TestId" asp-route-id="@item.Id">Edit</a> |
+                <a asp-route="tests-questions-details-by-classroom" asp-route-classroomPk="@ViewBag.ClassroomId" asp-route-testPk="@ViewBag.TestId" asp-route-id="@item.Id">Details</a> |
+                <a asp-route="tests-questions-delete-by-classroom-get" asp-route-classroomPk="@ViewBag.ClassroomId" asp-route-testPk="@ViewBag.TestId" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

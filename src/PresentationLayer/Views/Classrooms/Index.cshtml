@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BusinessLayer.ViewModels.ClassroomViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-route="classrooms-create-get">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            @if (ViewBag.CurrentUserId == item.OwnerId)
+            {
+                <td class="">
+                    <a asp-route="classrooms-edit-get" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-route="tests-index-by-classroom" asp-route-classroomId="@item.Id">Manage tests</a> |
+                    <a asp-route="invitations-by-classroom-index" asp-route-classroomPk="@item.Id">Manage invitations</a> |
+                    <a asp-route="classrooms-delete-get" asp-route-id="@item.Id">Delete</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a asp-route="tests-index-by-classroom" asp-route-classroomId="@item.Id">Go to tests</a>
+                </td>
+            }
+        </tr>
+}
+    </tbody>
+</table>

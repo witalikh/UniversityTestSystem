@@ -1,0 +1,83 @@
+﻿@model IEnumerable<BusinessLayer.ViewModels.TestViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #f3aaff;
+    }
+</style>
+
+<p>
+    <a asp-route="tests-create-by-classroom-get" asp-route-classroomId="@ViewBag.ClassroomId">Create New</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DurationSeconds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttemptsAllowed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalGrade)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DurationSeconds)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttemptsAllowed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalGrade)
+                </td>
+                <td>
+                    <a asp-route="tests-edit-by-classroom-get" asp-route-classroomId="@ViewBag.ClassroomId" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-route="tests-details-by-classroom" asp-route-classroomId="@ViewBag.ClassroomId" asp-route-id="@item.Id">Details</a> |
+                    <a asp-route="tests-delete-by-classroom-get" asp-route-classroomId="@ViewBag.ClassroomId" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

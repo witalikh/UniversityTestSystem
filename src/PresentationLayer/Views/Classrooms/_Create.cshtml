@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model BusinessLayer.ViewModels.ClassroomViewModel
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<h4>ClassroomEntityViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <h5>Members</h5>
+            <div id="members-container">
+                @if (Model != null && Model.Members != null)
+                {
+                    for (int i = 0; i < Model.Members.Count; i++)
+                    {
+@*                        @Html.Partial(
+                            "_MembershipPartialView", 
+                            Model.Members[i]
+                            //new ViewDataDictionary
+                            //{
+                            //    TemplateInfo = new TemplateInfo
+                            //    {
+                            //        HtmlFieldPrefix = $"Members[{i}]"
+                            //    }
+                            //}
+                            )*@
+                    }
+                }
+            </div>
+            <button type="button" id="add-member-btn" class="btn btn-primary">Add Member</button>
+            <button type="submit" class="btn btn-success">Create Classroom</button>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            var index = @Model?.Members?.Count ?? 0;
+
+            $('#add-member-btn').click(function () {
+                var container = $('#members-container');
+                //var html = '@await Html.PartialAsync("_MembershipPartialView", new MembershipViewModel()
+                //                       // new ViewDataDictionary { TemplateInfo = new TemplateInfo { HtmlFieldPrefix = "Members[" + index + "]" } }
+                //                       )';
+
+                container.append(html);
+                index++;
+            });
+        });
+    </script>
+}*@

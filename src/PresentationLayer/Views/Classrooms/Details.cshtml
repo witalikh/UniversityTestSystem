@@ -1,0 +1,39 @@
+﻿@model BusinessLayer.ViewModels.ClassroomViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ClassroomEntity</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (ViewBag.CurrentUserId == @Model.OwnerId)
+    {
+        <a asp-route="classrooms-edit-get" asp-route-id="@Model.Id">Edit</a>
+        <a asp-route="tests-index-by-classroom" asp-route-classroomId="@Model.Id">Manage tests</a>
+        <a asp-route="invitations-by-classroom-index" asp-route-classroomPk="@Model.Id">Manage invitations</a>
+        <a asp-route="classrooms-index"> Back to List</a>
+    }
+    else
+    {
+        <a asp-route="classrooms-index"> Back to List</a>
+    }
+</div>
