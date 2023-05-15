@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BusinessLayer.ViewModels.InvitationViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-route="invitations-by-classroom-create-get" asp-route-classroomPk="@ViewBag.ClassroomId">Create</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvitationStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvitationStatus)
+            </td>
+            <td>
+                <a asp-route="invitations-by-classroom-details" asp-route-classroomPk="@ViewBag.ClassroomId" asp-route-id="@item.Uuid">Details</a> |
+                <a asp-route="invitations-by-classroom-delete-get" asp-route-classroomPk="@ViewBag.ClassroomId" asp-route-id="@item.Uuid">Delete</a>
+            </td>
+        </tr>
+}
+    <tr>
+        <td></td>
+        <td></td>
+        <td>
+            <a asp-route="classrooms-index">Back to classroom list</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
