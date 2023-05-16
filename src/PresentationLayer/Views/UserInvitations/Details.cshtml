@@ -1,0 +1,42 @@
+﻿@using DataAccessLayer.Enums
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model BusinessLayer.ViewModels.InvitationViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>InvitationEntity</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InvitationStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InvitationStatus)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (@Model.InvitationStatus == InvitationStatus.Pending){
+        <form asp-route="invitations-by-user-accept-post" asp-route-id="@Model.Uuid">
+            <button type="submit">Accept</button>
+        </form>
+        <a asp-route="invitations-by-user-details" asp-route-id="@Model.Uuid">Details</a>
+        <a asp-route="invitations-by-user-delete-get" asp-route-id="@Model.Uuid">Decline</a>
+        <a asp-route="invitations-by-user-index">Back to invitations list</a>
+    }
+    else
+    {
+        <a asp-route="invitations-by-user-index">Back to invitations list</a>
+    }
+</div>

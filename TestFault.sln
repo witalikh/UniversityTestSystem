@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3AC545CE-5C6F-469D-A7DC-41931FBAF239}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationLayer", "src\PresentationLayer\PresentationLayer.csproj", "{A225FE4E-0611-4503-AB8A-9E66EF6EB054}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "src\DataAccessLayer\DataAccessLayer.csproj", "{EA83BD3B-54A5-4092-885C-382C46B8F9AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "src\BusinessLayer\BusinessLayer.csproj", "{46DBFB09-49ED-4312-A22A-B20D6E4B00B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTests", "tests\XUnitTests\XUnitTests.csproj", "{B1239D0C-EB0E-41C7-8309-29B7C8B6DD1F}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{39E4398B-2784-46A8-B30D-62AD8F958A66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A225FE4E-0611-4503-AB8A-9E66EF6EB054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A225FE4E-0611-4503-AB8A-9E66EF6EB054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A225FE4E-0611-4503-AB8A-9E66EF6EB054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A225FE4E-0611-4503-AB8A-9E66EF6EB054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA83BD3B-54A5-4092-885C-382C46B8F9AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA83BD3B-54A5-4092-885C-382C46B8F9AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA83BD3B-54A5-4092-885C-382C46B8F9AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA83BD3B-54A5-4092-885C-382C46B8F9AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46DBFB09-49ED-4312-A22A-B20D6E4B00B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46DBFB09-49ED-4312-A22A-B20D6E4B00B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46DBFB09-49ED-4312-A22A-B20D6E4B00B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46DBFB09-49ED-4312-A22A-B20D6E4B00B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1239D0C-EB0E-41C7-8309-29B7C8B6DD1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1239D0C-EB0E-41C7-8309-29B7C8B6DD1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1239D0C-EB0E-41C7-8309-29B7C8B6DD1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1239D0C-EB0E-41C7-8309-29B7C8B6DD1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E4398B-2784-46A8-B30D-62AD8F958A66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E4398B-2784-46A8-B30D-62AD8F958A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E4398B-2784-46A8-B30D-62AD8F958A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E4398B-2784-46A8-B30D-62AD8F958A66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D40589A-CA44-453B-A396-AA3F1F29CB6F}
+	EndGlobalSection
+EndGlobal

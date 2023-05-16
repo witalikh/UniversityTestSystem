@@ -1,0 +1,47 @@
+﻿@using DataAccessLayer.Enums
+@model IEnumerable<BusinessLayer.ViewModels.InvitationViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvitationStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvitationStatus)
+            </td>
+            <td>
+                @if (item.InvitationStatus == InvitationStatus.Pending){
+                    <form asp-route="invitations-by-user-accept-post" asp-route-id="@item.Uuid">
+                        <button type="submit">Accept</button>
+                    </form>
+                    <a asp-route="invitations-by-user-details" asp-route-id="@item.Uuid">Details</a>
+                    <a asp-route="invitations-by-user-delete-get" asp-route-id="@item.Uuid">Decline</a>
+                }
+                else
+                {
+                    <a asp-route="invitations-by-user-details" asp-route-id="@item.Uuid">Details</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
