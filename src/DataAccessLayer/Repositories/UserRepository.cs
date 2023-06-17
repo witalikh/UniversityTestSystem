@@ -44,6 +44,13 @@
             return await this._set.FindAsync(id);
         }
 
+        public async Task<MembershipEntity?> GetMemberAsync(string userPk, int classroomPk)
+        {
+            return await this._context.Memberships
+                .Where(m => m.UserEntityId == userPk && m.ClassroomEntityId == classroomPk)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             await this._context.SaveChangesAsync();

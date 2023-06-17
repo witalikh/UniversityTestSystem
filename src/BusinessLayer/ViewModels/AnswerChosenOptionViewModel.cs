@@ -30,5 +30,14 @@ public class AnswerChosenOptionViewModel
 
         this.ChoiceOptionId = entity.ChoiceOptionId;
     }
+
+    public static AnswerChosenOptionEntity ToEntity(AnswerChosenOptionViewModel viewModel)
+    {
+        return new AnswerChosenOptionEntity()
+        {
+            AnswerId = viewModel.AnswerId,
+            ChoiceOptionId = viewModel.ChoiceOptionId,
+        };
+    }
 }
 

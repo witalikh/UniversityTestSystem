@@ -13,6 +13,8 @@ public class TestViewModel
 
     public int ClassroomId { get; set; }
 
+    public string? OwnerId { get; set; }
+
     //[DisplayFormat(DataFormatString = "dd.MM.yyyy hh:mm", ApplyFormatInEditMode = true)]
     [DisplayName("Start date & time")]
     public DateTime? StartDateTime { get; set; } = DateTime.Now.AddDays(1);
@@ -39,6 +41,8 @@ public class TestViewModel
         this.Id = entity.Id;
 
         this.ClassroomId = entity.ClassroomId;
+        
+        this.OwnerId = entity.ClassroomEntity.OwnerId;
 
         this.StartDateTime = entity.StartDateTime;
 

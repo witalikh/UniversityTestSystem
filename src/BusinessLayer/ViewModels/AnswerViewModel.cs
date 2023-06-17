@@ -50,4 +50,26 @@ public class AnswerViewModel
             this.ChosenOptions = entity.ChosenOptions.Select(co => new AnswerChosenOptionViewModel(co)).ToList();
         }
     }
+
+    public static AnswerEntity ToEntity(AnswerViewModel viewModel)
+    {
+        AnswerEntity answerEntity = new AnswerEntity()
+        {
+            AttemptUuid = viewModel.AttemptUuid,
+            QuestionId = viewModel.QuestionId,
+            Marks = viewModel.Marks,
+            NumericValue = viewModel.NumericValue,
+            ShortTextValue = viewModel.ShortTextValue,
+        };
+
+        if (viewModel.ChosenOptions != null)
+        {
+            foreach (var optionData in viewModel.ChosenOptions)
+            {
+                answerEntity.ChosenOptions!.Add(AnswerChosenOptionViewModel.ToEntity(optionData));
+            }
+        }
+
+        return answerEntity;
+    }
 }

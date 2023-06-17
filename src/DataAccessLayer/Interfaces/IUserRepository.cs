@@ -16,5 +16,7 @@
         public Task<List<UserEntity>> FetchAll();
 
         public Task<UserEntity?> GetAsync(string id);
+
+        public Task<MembershipEntity?> GetMemberAsync(string userPk, int classroomPk);
     }
 }

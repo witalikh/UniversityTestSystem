@@ -36,7 +36,7 @@ public class AnswerEntity
     public int? Marks { get; set; }
 
     // getters (reverse)
-    public ICollection<AnswerChosenOptionEntity>? ChosenOptions { get; }
+    public ICollection<AnswerChosenOptionEntity>? ChosenOptions { get; set; }
 
     public double? NumericValue { get; set; }
 

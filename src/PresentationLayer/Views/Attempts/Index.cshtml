@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DataAccessLayer.Models.AttemptEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttemptNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTimeStarted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTimeEnded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestEntity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttemptNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeStarted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeEnded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestEntity.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.uuid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.uuid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.uuid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

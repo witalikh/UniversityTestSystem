@@ -28,7 +28,6 @@ namespace PresentationLayer.Controllers
             UserManager<UserEntity> manager,
             IClassroomManagementService classroomManagementService,
             IInvitationManagerService invitationManagerService,
-            ITestManagementService testManagementService,
             ILogger<ClassroomInvitationsController> logger)
             : base(manager)
         {

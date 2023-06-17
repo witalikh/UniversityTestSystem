@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    DateTime currentDateTime = DateTime.UtcNow;
 }
 
 <h1>Index</h1>
@@ -71,11 +72,25 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.TotalGrade)
                 </td>
+            @if (ViewBag.CurrentUserId == item.OwnerId){
                 <td>
-                    <a asp-route="tests-edit-by-classroom-get" asp-route-classroomId="@ViewBag.ClassroomId" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-route="tests-details-by-classroom" asp-route-classroomId="@ViewBag.ClassroomId" asp-route-id="@item.Id">Details</a> |
+                    <a asp-route="tests-edit-by-classroom-get" asp-route-classroomId="@ViewBag.ClassroomId" asp-route-id="@item.Id">Edit</a>|
+                    <a asp-route="tests-details-by-classroom" asp-route-classroomId="@ViewBag.ClassroomId" asp-route-id="@item.Id">Details</a>|
                     <a asp-route="tests-delete-by-classroom-get" asp-route-classroomId="@ViewBag.ClassroomId" asp-route-id="@item.Id">Delete</a>
                 </td>
+            }
+            else if (currentDateTime >= item.StartDateTime && currentDateTime <= item.EndDateTime)
+            {
+                <td>
+                    <a asp-route="tests-details-by-classroom" asp-route-classroomId="@ViewBag.ClassroomId" asp-route-id="@item.Id">Details</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a asp-route="tests-details-by-classroom" asp-route-classroomId="@ViewBag.ClassroomId" asp-route-id="@item.Id">Details</a>
+                </td>
+            }
             </tr>
         }
         </tbody>

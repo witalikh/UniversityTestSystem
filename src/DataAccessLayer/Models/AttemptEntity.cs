@@ -30,7 +30,7 @@ public class AttemptEntity
     public DateTime DateTimeStarted { get; set; }
 
     [Required]
-    public DateTime DateTimeEnded { get; set; }
+    public DateTime? DateTimeEnded { get; set; }
 
     // getters
     public TestEntity TestEntity { get; set; }

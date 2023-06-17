@@ -59,4 +59,11 @@ public class ApplicationDbContext : IdentityDbContext<UserEntity>
             .WithMany(m => m.Members)
             .HasForeignKey(m => m.ClassroomEntityId);
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql("Server=postgres;Port=5432;Database=TestFaultDB;Username=postgres;Password=postgres;");
+        base.OnConfiguring(optionsBuilder);
+
+    }
 }

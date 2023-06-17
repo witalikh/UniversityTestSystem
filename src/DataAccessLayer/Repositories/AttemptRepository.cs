@@ -36,7 +36,49 @@
 
         public async Task<AttemptEntity?> GetAsync(Guid id)
         {
-            return await this._set.FindAsync(id);
+            return await this._set
+                .Include(a => a.Member)
+                .Include(a => a.Answers)
+                .ThenInclude(a => a.ChosenOptions)
+                .Include(a => a.Answers)
+                .ThenInclude(a => a.Question)
+                .ThenInclude(q => q.ChoiceOptions)
+                .Where(a => a.uuid == id)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<int> GetUserAttemptsCount(int testPk, string userPk)
+        {
+            return await this._set
+                .Include(a => a.Member)
+                .Where(a => a.TestId == testPk && a.Member.UserEntityId == userPk)
+                .CountAsync();
+        }
+
+        public async Task<List<AttemptEntity>> GetUserTestAttempts(int testPk, string userPk)
+        {
+            return await this._set
+                .Include(a => a.Member)
+                .Include(a => a.Answers)
+                .ThenInclude(a => a.ChosenOptions)
+                .Include(a => a.Answers)
+                .ThenInclude(a => a.Question)
+                .ThenInclude(q => q.ChoiceOptions)
+                .Where(a => a.TestId == testPk && a.Member.UserEntityId == userPk)
+                .ToListAsync();
+        }
+
+        public async Task<List<AttemptEntity>> GetAllTestAttempts(int testPk)
+        {
+            return await this._set
+                .Include(a => a.Member)
+                .Include(a => a.Answers)
+                .ThenInclude(a => a.ChosenOptions)
+                .Include(a => a.Answers)
+                .ThenInclude(a => a.Question)
+                .ThenInclude(q => q.ChoiceOptions)
+                .Where(a => a.TestId == testPk)
+                .ToListAsync();
         }
 
         public async Task<bool> SaveChangesAsync()

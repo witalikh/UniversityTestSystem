@@ -8,9 +8,9 @@ namespace BusinessLayer.Services.Implementations;
 
 public class InvitationManagerService: IInvitationManagerService
 {
-    private IInvitationRepository _invitationRepository;
-    private IClassroomRepository _classroomRepository;
-    private IUserRepository _userRepository;
+    private readonly IInvitationRepository _invitationRepository;
+    private readonly IClassroomRepository _classroomRepository;
+    private readonly IUserRepository _userRepository;
     private ILogger<InvitationManagerService> _logger;
 
     public InvitationManagerService(
