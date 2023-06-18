@@ -63,7 +63,7 @@ namespace PresentationLayer.Areas.Identity.Pages.Account
             var user = await this._userManager.FindByEmailAsync(this.Input.Email);
             if (user == null)
             {
-                this.ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+                this.ModelState.AddModelError(string.Empty, "Your email is not registered.");
                 return this.Page();
             }
 
