@@ -6,3 +6,5 @@
 
 # Migrations are autorunning while startup
 
+# Production website
+http://testfault.azurewebsites.net
