@@ -13,6 +13,7 @@ services:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
       - POSTGRES_DB
+      - stmp_password
     ports:
       - "80"
       - "443"
