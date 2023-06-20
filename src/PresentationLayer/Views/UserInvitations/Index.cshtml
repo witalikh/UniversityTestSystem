@@ -16,6 +16,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.InvitationStatus)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpirationDate)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -27,6 +30,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InvitationStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpirationDate)
             </td>
             <td>
                 @if (item.InvitationStatus == InvitationStatus.Pending){

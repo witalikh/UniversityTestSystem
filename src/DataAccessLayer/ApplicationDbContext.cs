@@ -5,6 +5,7 @@
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace DataAccessLayer;
 
@@ -59,4 +60,15 @@ public class ApplicationDbContext : IdentityDbContext<UserEntity>
             .WithMany(m => m.Members)
             .HasForeignKey(m => m.ClassroomEntityId);
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            var connectionString =
+                "Server=postgres;Port=5432;Database=TestFaultDB;Username=postgres;Password=postgres;";
+            optionsBuilder.UseNpgsql(connectionString);
+        }
+    }
+
 }

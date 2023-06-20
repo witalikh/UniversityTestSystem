@@ -15,6 +15,8 @@ namespace BusinessLayer.ViewModels
 
         public InvitationStatus InvitationStatus { get; set; } = InvitationStatus.Pending;
 
+        public DateTime ExpirationDate { get; set; } = DateTime.UtcNow + TimeSpan.FromDays(7);
+
         public InvitationViewModel() { }
 
         public InvitationViewModel(InvitationEntity entity)
@@ -28,6 +30,8 @@ namespace BusinessLayer.ViewModels
             this.UserId = entity.UserId;
 
             this.InvitationStatus = entity.InvitationStatus;
+
+            this.ExpirationDate = entity.ExpirationDate;
         }
 
         public static InvitationEntity ToEntity(InvitationViewModel viewModel)
@@ -39,6 +43,7 @@ namespace BusinessLayer.ViewModels
                 ClassroomId = viewModel.ClassroomId,
                 UserId = viewModel.UserId,
                 InvitationStatus = viewModel.InvitationStatus,
+                ExpirationDate = viewModel.ExpirationDate,
             };
         }
     }

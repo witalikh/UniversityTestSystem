@@ -102,7 +102,7 @@ namespace PresentationLayer.Controllers
         [Route("{classroomPk}/Invitations/Create", Name = "invitations-by-classroom-create-post")]
         public async Task<IActionResult> Create(
             int classroomPk,
-            [Bind("uuid,Email,ClassroomId,UserId,InvitationStatus")] InvitationEntity invitationEntity)
+            [Bind("uuid,Email,ClassroomId,UserId,InvitationStatus,ExpirationDate")] InvitationEntity invitationEntity)
         {
             string userId = this.GetUserId() !;
             this.ViewBag.ClassroomId = classroomPk;
@@ -118,7 +118,7 @@ namespace PresentationLayer.Controllers
             {
                 invitationEntity.uuid = Guid.NewGuid();
                 invitationEntity.ClassroomId = classroomPk;
-                bool created = await this._invitationManagerService.InviteUserIntoClassroom(classroomPk, invitationEntity.Email);
+                bool created = await this._invitationManagerService.InviteUserIntoClassroom(classroomPk, invitationEntity);
                 if (created)
                 {
                     return this.RedirectToAction(nameof(this.Index), new { classroomPk });

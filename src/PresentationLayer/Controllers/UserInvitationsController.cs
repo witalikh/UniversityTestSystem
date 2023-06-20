@@ -36,7 +36,7 @@ namespace PresentationLayer.Controllers
             string userId = this.GetUserId() !;
 
             var invites = await this._invitationManagerService.GetInvitationsByUser(userId);
-            return this.View(invites.Select(t => new InvitationViewModel(t)).ToList());
+            return this.View(invites.Where(t => t.ExpirationDate >= DateTime.Now).Select(t => new InvitationViewModel(t)).ToList());
         }
 
         [Authorize]

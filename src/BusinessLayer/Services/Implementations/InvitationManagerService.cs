@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Services.Interfaces;
+using BusinessLayer.ViewModels;
 using DataAccessLayer.Enums;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
@@ -38,13 +39,14 @@ public class InvitationManagerService: IInvitationManagerService
         return;
     }
 
-    public async Task<bool> InviteUserIntoClassroom(int classroomPk, string Email)
+    public async Task<bool> InviteUserIntoClassroom(int classroomPk, InvitationEntity invite)
     {
-        var user = await this._userRepository.GetUserByEmail(Email);
+        var user = await this._userRepository.GetUserByEmail(invite.Email);
         var newInvite = new InvitationEntity()
         {
             ClassroomId = classroomPk,
-            Email = Email,
+            Email = invite.Email,
+            ExpirationDate = invite.ExpirationDate,
             User = user,
             InvitationStatus = InvitationStatus.Pending,
         };
@@ -87,6 +89,11 @@ public class InvitationManagerService: IInvitationManagerService
     {
         var invite = await this._invitationRepository.GetAsync(id);
         if (invite == null || invite.UserId != userPk || invite.InvitationStatus != InvitationStatus.Pending)
+        {
+            return false;
+        }
+
+        if (invite.ExpirationDate > DateTime.UtcNow)
         {
             return false;
         }

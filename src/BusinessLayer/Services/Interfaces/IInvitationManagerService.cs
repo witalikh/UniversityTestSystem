@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLayer.ViewModels;
 using DataAccessLayer.Models;
 
 namespace BusinessLayer.Services.Interfaces
@@ -11,7 +12,7 @@ namespace BusinessLayer.Services.Interfaces
     {
         public Task BindInvitationsAfterSignUpAsync(UserEntity user);
 
-        public Task<bool> InviteUserIntoClassroom(int classroomPk, string Email);
+        public Task<bool> InviteUserIntoClassroom(int classroomPk, InvitationEntity invite);
 
         public Task<bool> RevokeUserInvitesFromClassroom(int classroomPk, string Email);
 

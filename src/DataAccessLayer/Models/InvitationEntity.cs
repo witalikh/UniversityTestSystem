@@ -35,5 +35,8 @@ namespace DataAccessLayer.Models
         public UserEntity? User { get; set; }
 
         public InvitationStatus InvitationStatus { get; set; }
+
+        [Required]
+        public DateTime ExpirationDate { get; set; }
     }
 }
